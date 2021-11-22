@@ -31,7 +31,7 @@ std::shared_ptr<IGameObject> GameObjectFactory(GameObjectTypes object){
     if(GameObjectTypes::PLANE == object){
         return std::make_shared<Plane>();
     }
-    else if(GameObjectTypes::PLANE == object){
+    else if(GameObjectTypes::BOAT == object){
         return std::make_shared<Boat>();
     }
 

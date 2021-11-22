@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <memory>
 
@@ -10,38 +9,36 @@ class IGameObject{
         virtual void Render() = 0;
 };
 
-class Plane: public IGameObject{
+class Plane : public IGameObject{
     public:
-        Plane(){}
-        void Update(){}
-        void Render(){}
+        Plane() {}
+        void Update() {}
+        void Render() {}
 };
+
 class Boat: public IGameObject{
     public:
-        Boat(){}
-        void Update(){}
-        void Render(){}
+        Boat() {}
+        void Update() {}
+        void Render() {}
+
 };
 
-enum class GameObjectTypes { PLANE, BOAT};
+enum class ObjectType {PLANE, BOAT};
 
-// Our factory pattern
-std::shared_ptr<IGameObject> GameObjectFactory(GameObjectTypes object){
-
-    if(GameObjectTypes::PLANE == object){
+std::shared_ptr<IGameObject> MakeGameObjectFactory(ObjectType type){
+    if(ObjectType::PLANE==type){
         return std::make_shared<Plane>();
-    }
-    else if(GameObjectTypes::BOAT == object){
+    }else if(ObjectType::BOAT==type){
         return std::make_shared<Boat>();
-    }
-
+    } 
     return nullptr;
-
 }
+
 
 int main(){
 
-    std::shared_ptr<IGameObject> myObject = GameObjectFactory(GameObjectTypes::PLANE);
-
+    std::shared_ptr<IGameObject> myObject = MakeGameObjectFactory(ObjectType::PLANE);
+    std::shared_ptr<IGameObject> myObject2 = MakeGameObjectFactory(ObjectType::BOAT);
     return 0;
 }
